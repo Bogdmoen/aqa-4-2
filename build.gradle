@@ -18,7 +18,10 @@ dependencies {
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
     testImplementation 'com.codeborne:selenide:5.19.0'
     implementation 'com.github.javafaker:javafaker:1.0.2'
-    compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.16'
+    implementation 'io.rest-assured:rest-assured:4.3.3'
+    implementation 'com.google.code.gson:gson:2.8.6'
+    compileOnly 'org.projectlombok:lombok:1.18.16'
+    annotationProcessor 'org.projectlombok:lombok:1.18.16'
 }
 
 test {
