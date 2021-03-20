@@ -1,4 +1,4 @@
-package ru.netology.web;
+package ru.netology.generator;
 
 import com.github.javafaker.Faker;
 import io.restassured.RestAssured;

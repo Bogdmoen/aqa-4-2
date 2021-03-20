@@ -5,6 +5,7 @@ import com.github.javafaker.Faker;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ru.netology.domain.UserInfo;
+import ru.netology.generator.UserSetUp;
 
 import java.util.Locale;
 
