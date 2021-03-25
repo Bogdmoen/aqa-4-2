@@ -2,5 +2,4 @@
 
 Время, затраченное на написание автотестов - 2 часа.
 
-
-[![Build status](https://ci.appveyor.com/api/projects/status/nj4l5ecft58mafg5?svg=true)](https://ci.appveyor.com/project/Bogdmoen/aqa-4-2)
+[![Java CI with Gradle](https://github.com/Bogdmoen/aqa-4-1/actions/workflows/gradle.yml/badge.svg)](https://github.com/Bogdmoen/aqa-4-2/actions/workflows/gradle.yml)
