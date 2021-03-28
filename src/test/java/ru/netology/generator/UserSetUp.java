@@ -11,7 +11,7 @@ import ru.netology.domain.UserInfo;
 import java.util.Locale;
 
 public class UserSetUp {
-    private static RequestSpecification requestSpec = new RequestSpecBuilder()
+    private static final RequestSpecification requestSpec = new RequestSpecBuilder()
             .setBaseUri("http://localhost")
             .setPort(9999)
             .setAccept(ContentType.JSON)
@@ -19,7 +19,7 @@ public class UserSetUp {
             .log(LogDetail.ALL)
             .build();
 
-    private static Faker faker = new Faker(new Locale("eng"));
+    private static final Faker faker = new Faker(new Locale("eng"));
 
     public static void postUser (UserInfo registration) {
         RestAssured.given()
@@ -49,4 +49,11 @@ public class UserSetUp {
         return userInfo;
     }
 
+    public static String getRandomUserName () {
+        return faker.name().firstName();
+    }
+
+    public static String getRandomPassword() {
+        return faker.bothify("?####??##?");
+    }
 }

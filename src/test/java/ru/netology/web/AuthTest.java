@@ -1,24 +1,19 @@
 package ru.netology.web;
 
 import com.codeborne.selenide.Condition;
-import com.github.javafaker.Faker;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ru.netology.domain.UserInfo;
-import ru.netology.generator.UserSetUp;
-
-import java.util.Locale;
 
 import static com.codeborne.selenide.Selenide.*;
+import static ru.netology.generator.UserSetUp.*;
 
 public class AuthTest {
-    private final UserInfo activeUser = UserSetUp.setActiveUser();
-    private final UserInfo blockedUser = UserSetUp.setBlockedUser();
-    Faker faker = new Faker(new Locale("eng"));
+    private final UserInfo activeUser = setActiveUser();
+    private final UserInfo blockedUser = setBlockedUser();
 
     @BeforeEach
     public void setUp() {
-
         open("http://localhost:9999");
     }
 
@@ -70,8 +65,8 @@ public class AuthTest {
 
     @Test
     public void shouldNotAuthWithNonExistingUser() {
-        $("[data-test-id='login'] .input__control").setValue(faker.name().firstName());
-        $("[data-test-id='password'] .input__control").setValue(faker.numerify("#####"));
+        $("[data-test-id='login'] .input__control").setValue(getRandomUserName());
+        $("[data-test-id='password'] .input__control").setValue(getRandomPassword());
         $(".button[data-test-id='action-login']").click();
         $("[data-test-id='error-notification'] .notification__content").shouldHave(Condition.exactText("Ошибка! Неверно указан логин или пароль"));
     }
@@ -79,7 +74,7 @@ public class AuthTest {
     @Test
     public void shouldNotAuthActiveWithWrongPassword() {
         $("[data-test-id='login'] .input__control").setValue(activeUser.getLogin());
-        $("[data-test-id='password'] .input__control").setValue(faker.numerify("#####"));
+        $("[data-test-id='password'] .input__control").setValue(getRandomPassword());
         $(".button[data-test-id='action-login']").click();
         $("[data-test-id='error-notification'] .notification__content").shouldHave(Condition.exactText("Ошибка! Неверно указан логин или пароль"));
     }
@@ -87,9 +82,8 @@ public class AuthTest {
     @Test
     public void shouldNotAuthBlockedWithWrongPassword() {
         $("[data-test-id='login'] .input__control").setValue(blockedUser.getLogin());
-        $("[data-test-id='password'] .input__control").setValue(faker.numerify("#####"));
+        $("[data-test-id='password'] .input__control").setValue(getRandomPassword());
         $(".button[data-test-id='action-login']").click();
         $("[data-test-id='error-notification'] .notification__content").shouldHave(Condition.exactText("Ошибка! Неверно указан логин или пароль"));
     }
-
 }
